@@ -1,6 +1,7 @@
 package sudoku.buildlogic;
 
 import sudoku.computationLogic.GameLogic;
+import sudoku.persitence.LocalStorageImpl;
 import sudoku.problemdomain.IStorage;
 import sudoku.problemdomain.SudokuGame;
 import sudoku.userinterface.IUserInterfaceContract;

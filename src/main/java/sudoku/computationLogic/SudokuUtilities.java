@@ -19,5 +19,6 @@ public class SudokuUtilities {
                 newArray[xIndex][yIndex] = oldArray[xIndex][yIndex];
             }
         }
+        return  newArray;
     }
 }
