@@ -2,6 +2,8 @@ package sudoku.problemdomain;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import sudoku.computationLogic.SudokuUtilities;
+import sudoku.constants.GameState;
 
 import java.io.Serializable;
 
