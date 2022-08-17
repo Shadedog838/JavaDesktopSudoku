@@ -17,10 +17,10 @@ public class GameGenerator {
         Random random = new Random(System.currentTimeMillis());
 
         boolean solvable = false;
-        int[][] solveableArray = new int[GRID_BOUNDARY][GRID_BOUNDARY];
+        int[][] solvableArray = new int[GRID_BOUNDARY][GRID_BOUNDARY];
 
-        while (solvable == false) {
-            SudokuUtilities.copySudokuArrayValues(solvedGame, solveableArray);
+        while (!solvable) {
+            SudokuUtilities.copySudokuArrayValues(solvedGame, solvableArray);
 
             int index = 0;
 
@@ -28,17 +28,17 @@ public class GameGenerator {
                 int xCoordinate = random.nextInt(GRID_BOUNDARY);
                 int yCoordinate = random.nextInt(GRID_BOUNDARY);
 
-                if (solveableArray[xCoordinate][yCoordinate] != 0) {
-                    solveableArray[xCoordinate][yCoordinate] = 0;
+                if (solvableArray[xCoordinate][yCoordinate] != 0) {
+                    solvableArray[xCoordinate][yCoordinate] = 0;
                     index++;
                 }
             }
             int[][] toBeSolved = new int[GRID_BOUNDARY][GRID_BOUNDARY];
-            SudokuUtilities.copySudokuArrayValues(solveableArray, toBeSolved);
+            SudokuUtilities.copySudokuArrayValues(solvableArray, toBeSolved);
 
             solvable = SudokuSolver.puzzleIsSolvable(toBeSolved);
         }
-        return solveableArray;
+        return solvableArray;
     }
 
     public static int[][] getSolvedGame() {
@@ -51,7 +51,7 @@ public class GameGenerator {
 
             List<Coordinates> allocTracker = new ArrayList<>();
 
-            int attampts = 0;
+            int attempts = 0;
 
             while (allocations < GRID_BOUNDARY) {
                 if (interrupt > 200) {
@@ -62,11 +62,11 @@ public class GameGenerator {
                     interrupt = 0;
                     allocations = 0;
                     allocTracker.clear();
-                    attampts++;
+                    attempts++;
 
-                    if (attampts > 500) {
+                    if (attempts > 500) {
                         clearArray(newGrid);
-                        attampts = 0;
+                        attempts = 0;
                         value = 1;
                     }
                 }
@@ -85,10 +85,8 @@ public class GameGenerator {
                     }
                 }
             }
-            return newGrid;
         }
-
-        return new int[0][];
+        return newGrid;
     }
 
     private static void clearArray(int[][] newGrid) {

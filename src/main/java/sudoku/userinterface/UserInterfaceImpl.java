@@ -36,7 +36,7 @@ public class UserInterfaceImpl implements IUserInterfaceContract.View,
 
     private static final Color WINDOW_BACKGROUND_COLOR = Color.rgb(0, 150, 136);
     private static final Color BOARD_BACKGROUND_COLOR = Color.rgb(224, 242, 241);
-    private static String SUDOKU = "Sudoku";
+    private static final String SUDOKU = "Sudoku";
 
     public UserInterfaceImpl(Stage stage) {
         this.stage = stage;
@@ -46,7 +46,7 @@ public class UserInterfaceImpl implements IUserInterfaceContract.View,
     }
 
     private void initializerUserInterface() {
-        drawBackgound(root);
+        drawBackground(root);
         drawTitle(root);
         drawSudokuBoard(root);
         drawTextFields(root);
@@ -144,11 +144,11 @@ public class UserInterfaceImpl implements IUserInterfaceContract.View,
         boardBackground.setY(BOARD_PADDING);
 
         boardBackground.setWidth(BOARD_X_AND_Y);
-        boardBackground.setHeight(BOARD_PADDING);
+        boardBackground.setHeight(BOARD_X_AND_Y);
 
         boardBackground.setFill(BOARD_BACKGROUND_COLOR);
 
-        root.getChildren().addAll(boardBackground);
+        root.getChildren().add(boardBackground);
     }
 
     private void drawTitle(Group root) {
@@ -159,7 +159,7 @@ public class UserInterfaceImpl implements IUserInterfaceContract.View,
         root.getChildren().add(title);
     }
 
-    private void drawBackgound(Group root) {
+    private void drawBackground(Group root) {
         Scene scene = new Scene(root, WINDOW_X, WINDOW_Y);
         scene.setFill(WINDOW_BACKGROUND_COLOR);
         stage.setScene(scene);
@@ -186,7 +186,7 @@ public class UserInterfaceImpl implements IUserInterfaceContract.View,
     @Override
     public void updateBoard(SudokuGame game) {
         for (int xIndex = 0; xIndex < 9; xIndex++) {
-            for (int yIndex = 0; yIndex < 0; yIndex++) {
+            for (int yIndex = 0; yIndex < 9; yIndex++) {
                 TextField tile = textFieldCoordinates.get(new Coordinates(xIndex, yIndex));
                 String value = Integer.toString(
                         game.getCopyOfGridState()[xIndex][yIndex]
